@@ -6,37 +6,24 @@
 
 		//type checking https://www.typescriptlang.org/tsconfig#Type_Checking_6248
 		"strict": true,
-		"allowUnreachableCode": false,
-		"allowUnusedLabels": false,
-		"exactOptionalPropertyTypes": true,
-		"noFallthroughCasesInSwitch": true,
-		"noImplicitAny": true,
-		"noImplicitOverride": true,
-		"noImplicitReturns": true,
-		"noImplicitThis": true,
-		"noPropertyAccessFromIndexSignature": false,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
 
 		//Modules https://www.typescriptlang.org/tsconfig#Modules_6244
 		//    "moduleResolution": "node",
 		"module": "NodeNext",
 		"baseUrl": ".",
 		"paths": {
-			"@/*": ["./src/app/*"],
-			"@utils/*": ["./src/app/utils/*"],
+			"@/*": ["./src/*"],
+			"@utils/*": ["./src/utils/*"],
 			"@type/*": ["./src/typings/*"]
 		},
 
 		//emit https://www.typescriptlang.org/tsconfig#Emit_6246
 		"removeComments": true,
 		"noEmitOnError": true,
-		"sourceMap": true,
 		"outDir": "dist",
 
 		//JS support https://www.typescriptlang.org/tsconfig#JavaScript_Support_6247
-		"allowJs": true,
-		"checkJs": true,
+		"allowJs": false,
 
 		//Interop Constraints https://www.typescriptlang.org/tsconfig#Interop_Constraints_6252
 		"esModuleInterop": true,
@@ -47,6 +34,6 @@
 		//Completeness https://www.typescriptlang.org/tsconfig#Completeness_6257
 		"skipLibCheck": true
 	},
-	"include": ["src", ".env.d.ts"],
-	"exclude": ["node_modules", "dist", "build", "out", ".vscode", "typings"]
+	"include": ["src/**/*"],
+	"exclude": ["node_modules"]
 }
