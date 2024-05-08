@@ -4,15 +4,6 @@ import updateHistory from "@/history.js";
 import * as img from "@/imageHandler.js";
 import Log from "@/logger.js";
 
-async function lookupPost(id: string) {
-	try {
-		const status = await X.v1.tweets([id]);
-		console.log(status);
-	} catch (e) {
-		throw new Error(`lookup failed due to ${e}`);
-	}
-}
-
 async function createPost(): Promise<createPostRes> {
 	//prepare image
 	let mediaId = "";
@@ -20,6 +11,7 @@ async function createPost(): Promise<createPostRes> {
 	try {
 		imgFilePath = await img.selectImageFromRepo(process.env.IMG_REPO_DIR_PATH);
 		mediaId = await img.getMediaId(imgFilePath);
+		console.log(`mediaId acquired ${mediaId}`);
 	} catch (e) {
 		throw new Error(`createPost failed due to ${e}`);
 	}
@@ -47,4 +39,4 @@ async function createPost(): Promise<createPostRes> {
 	}
 }
 
-export { createPost, lookupPost };
+export default createPost;

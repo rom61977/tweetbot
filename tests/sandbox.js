@@ -1,12 +1,22 @@
-import X from "../dist/auth.js";
-import EBretry from "../dist/index.js";
-import { lookupPost } from "../dist/post.js";
-//lookupPost("1787328155650515106");
-
-const fn = () => {
-	const n = Math.random() * 10;
-	if (n > 8) return true;
-	throw new Error(`fn failed with n=${n}`);
+import expoBackoffRetry from "../dist/retry.js";
+const retryMax = 5;
+const waitMS = 100;
+const waitInterval = 5000;
+const failRate = 8;
+const showResult = async (pre, post) => {
+	const i = Math.ceil(Math.random() * 10);
+	if (i > failRate) {
+		return console.log(`i = ${i} ${pre}${post}!!`);
+	}
+	throw new Error("showResult failed.");
 };
 
-await EBretry(fn, 5, 1000);
+new Promise((resolve, reject) => {
+	setInterval(async () => {
+		try {
+			resolve(await expoBackoffRetry(retryMax, waitMS, showResult, ["hey", " it succeeded"]));
+		} catch (e) {
+			reject(console.log(e));
+		}
+	}, waitInterval);
+});

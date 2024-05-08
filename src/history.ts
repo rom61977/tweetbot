@@ -1,9 +1,4 @@
 import fsp from "node:fs/promises";
-import path from "node:path";
-import X from "@/auth.js";
-import * as img from "@/imageHandler.js";
-import Log from "@/logger.js";
-import sendMail from "@/mailer.js";
 
 async function updateHistory(id: string, mediaId: string, imgPath: string) {
 	const createdAt = new Date().toISOString();
